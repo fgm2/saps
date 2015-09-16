@@ -1,0 +1,37 @@
+
+<% if user_signed_in? %>
+  
+<!-- <ul class="nav nav-tabs">-->
+<!--  <li class="active"><a href="#">Visualizar</a></li>-->
+<!--  <li><a href="#">Editar</a></li>-->
+<!--</ul>-->
+  
+<% end %>
+<!--<h1>Lista de Matérias</h1>-->
+<br>
+<div class="container">
+	<div class="row">
+		<h1>Matérias</h1>
+		<hr>
+		<% @area_of_knowledges.each do |ak| %>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<% @matter_of_ak = Matter.where( "areaOfKnowledge_id = ? ", ak.id) %>
+	  			  	<h4> <%= ak.name %> <span class="badge"> <%= @matter_of_ak.count %> </span> </h4>
+	  			</div>
+	  			<div class="panel-body">
+					<div class="container">
+		        		<% @matter_of_ak.each_with_index do |materias, index| %>
+							<% courses_of_matter = Course.where( "matter_id = ? ", materias.id) %>
+		  			  		<%= link_to (materias.name) , materias %> <span class="badge"> <%= courses_of_matter.count %> </span> 
+		  			  		<% if @matter_of_ak.last %> <br> <% end %>
+		  			  	<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div> <!--row2-->
+		
+</div>  <!--container-->

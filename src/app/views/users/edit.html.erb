@@ -1,0 +1,15 @@
+<% if (@user.id == current_user.id) %>
+
+    <h1>Editando meu perfil</h1>
+<br>
+<%= render 'form' %>
+<% else %>
+    <div class="container">
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Atenção!</strong> Você não tem permissão para realizar esta ação.
+        </div>
+
+    </div>
+
+<% end %>
